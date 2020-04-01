@@ -1,5 +1,4 @@
 #include <iostream>
-#include <array>
 #include <vector>
 int main()
 {
@@ -23,7 +22,8 @@ int main()
     }
     else
     {
-        int liczbaDzielnikow[n];
+        std::vector<int> liczbaDzielnikow;
+        liczbaDzielnikow.resize(n);
         std::vector< std::vector<int> > dzielniki;
         dzielniki.resize(n);
         for (int i=0; i<n; i++)
