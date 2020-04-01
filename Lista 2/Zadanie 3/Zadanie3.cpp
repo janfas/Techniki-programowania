@@ -49,7 +49,8 @@ int main()
         {
             for(int j=0; j<=liczbaDzielnikow[i]; j++)
             {
-                std::cout << dzielniki[i][j] << " ";
+                std::cout.width(2);
+                std::cout << dzielniki[i][j];
             }
             std::cout << std::endl;
         }
