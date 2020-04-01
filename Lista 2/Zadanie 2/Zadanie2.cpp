@@ -3,7 +3,7 @@
 
 int main()
 {
-    std::cout << "Generowanie tabliczki mnożenia:" << std::endl;
+    std::cout << "Generowanie tabliczki mnozenia:" << std::endl;
     int n;
     std::cout << "Na ktorej liczbie chcesz zakonczyc tabliczke mnozenia?" << std::endl;
     std::cin >> n;
@@ -17,11 +17,6 @@ int main()
     {
         std::vector< std::vector<int> > tabliczkaMnozenia;
         tabliczkaMnozenia.resize(n);
-       // tabliczkaMnozenia.at(0).resize(n);
-       // for(int i=0; i<n; i++)
-       // {
-          //  tabliczkaMnozenia.at(0).at(i)=i+1;
-      //  }
         for(int i=0; i<n; i++)
         {
             tabliczkaMnozenia.at(i).resize(n);
