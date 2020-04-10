@@ -2,8 +2,8 @@
 #include<array>
 using Plansza=std::array <std::array<char, 3>, 3> ;
 void ruch(Plansza ruchGracza, char kolejnosc);
-void sprawdzenieWyniku(Plansza sprawdzenieWyniku, char kolejnosc);
-void wypisaniePlanszy(Plansza wypisaniePlanszy, char kolejnosc)
+bool sprawdzenieWyniku(Plansza sprawdzenieWyniku);
+void wypisaniePlanszy(Plansza wypisaniePlanszy)
 {
     for(int i=0; i<3; i++)
     {
@@ -20,182 +20,43 @@ void wypisaniePlanszy(Plansza wypisaniePlanszy, char kolejnosc)
     std::cout << "x - Krzyzyk" << std::endl;
     std::cout << "Numery kolumn od lewej do prawej - 1, 2, 3" << std::endl;
     std::cout << "Numery wierszy z gory na dol - 1, 2, 3" << std::endl;
-    sprawdzenieWyniku(wypisaniePlanszy, kolejnosc);
 }
 
-void sprawdzenieWyniku(Plansza sprawdzenieWyniku, char kolejnosc)
+bool sprawdzenieWyniku(Plansza sprawdzenieWyniku)
 {
-    if(sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(0).at(1) && sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(0).at(2))
+    for(int i = 0; i<3; i++)
     {
-        if (sprawdzenieWyniku.at(0).at(0) =='x')
-        {
-            std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-        }
+        if(sprawdzenieWyniku.at(0).at(i)==sprawdzenieWyniku.at(1).at(i)
+        && sprawdzenieWyniku.at(0).at(i)==sprawdzenieWyniku.at(2).at(i)
+        && sprawdzenieWyniku.at(0).at(i)!='p')
+        return true;
         else
         {
-            if(sprawdzenieWyniku.at(0).at(0) =='o')
-            {
-            std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-            }
+            if(sprawdzenieWyniku.at(i).at(0)==sprawdzenieWyniku.at(i).at(1)
+            && sprawdzenieWyniku.at(i).at(0)==sprawdzenieWyniku.at(i).at(2)
+            && sprawdzenieWyniku.at(i).at(0)!='p')
+            return true;
             else
             {
-                ruch(sprawdzenieWyniku, kolejnosc);
-            }
-        }
-    }
-    else
-    {
-        if(sprawdzenieWyniku.at(1).at(0)==sprawdzenieWyniku.at(1).at(1) && sprawdzenieWyniku.at(1).at(0)==sprawdzenieWyniku.at(1).at(2))
-        {
-            if (sprawdzenieWyniku.at(1).at(0) =='x')
-            {
-                std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-            }
-            else
-            {
-                if(sprawdzenieWyniku.at(1).at(0) =='o')
-                {
-                std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-                }
+                if(sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(1).at(1)
+                && sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(2).at(2)
+                && sprawdzenieWyniku.at(0).at(0)!='p')
+                return true;
                 else
                 {
-                    ruch(sprawdzenieWyniku, kolejnosc);
-                }
-            }
-        }
-        else
-        {
-            if(sprawdzenieWyniku.at(2).at(0)==sprawdzenieWyniku.at(2).at(1) && sprawdzenieWyniku.at(2).at(0)==sprawdzenieWyniku.at(2).at(2))
-            {
-                if (sprawdzenieWyniku.at(2).at(0) =='x')
-                {
-                    std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-                }
-                else
-                {
-                    if(sprawdzenieWyniku.at(2).at(0) =='o')
-                    {
-                        std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-                    }
+                    if(sprawdzenieWyniku.at(0).at(2)==sprawdzenieWyniku.at(1).at(1)
+                    && sprawdzenieWyniku.at(0).at(2)==sprawdzenieWyniku.at(2).at(0)
+                    && sprawdzenieWyniku.at(0).at(2)!='p')
+                    return true;
                     else
                     {
-                        ruch(sprawdzenieWyniku, kolejnosc);
-                    }
-                }
-            }
-            else
-            {
-                if(sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(1).at(0) && sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(2).at(0))
-                {
-                    if (sprawdzenieWyniku.at(0).at(0) =='x')
-                    {
-                        std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-                    }
-                    else
-                    {
-                        if(sprawdzenieWyniku.at(0).at(0) =='o')
-                        {
-                            std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-                        }
-                        else
-                        {
-                            ruch(sprawdzenieWyniku, kolejnosc);
-                        }
-                    }
-                }
-                else
-                {
-                    if(sprawdzenieWyniku.at(0).at(1)==sprawdzenieWyniku.at(1).at(1) && sprawdzenieWyniku.at(0).at(1)==sprawdzenieWyniku.at(2).at(1))
-                    {
-                        if (sprawdzenieWyniku.at(0).at(1) =='x')
-                        {
-                            std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-                        }
-                        else
-                        {
-                            if(sprawdzenieWyniku.at(0).at(1) =='o')
-                            {
-                                std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-                            }
-                            else
-                            {
-                                ruch(sprawdzenieWyniku, kolejnosc);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if(sprawdzenieWyniku.at(0).at(2)==sprawdzenieWyniku.at(1).at(2) && sprawdzenieWyniku.at(0).at(2)==sprawdzenieWyniku.at(2).at(2))
-                        {
-                            if (sprawdzenieWyniku.at(0).at(2) =='x')
-                            {
-                                std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-                            }
-                            else
-                            {
-                                if(sprawdzenieWyniku.at(0).at(2) =='o')
-                                {
-                                    std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-                                }
-                                else
-                                {
-                                    ruch(sprawdzenieWyniku, kolejnosc);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if(sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(1).at(1) && sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(2).at(2))
-                            {
-                                if (sprawdzenieWyniku.at(0).at(0) =='x')
-                                {
-                                    std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-                                }
-                                else
-                                {
-                                    if(sprawdzenieWyniku.at(0).at(0) =='o')
-                                    {
-                                        std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-                                    }
-                                    else
-                                    {
-                                        ruch(sprawdzenieWyniku, kolejnosc);
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if(sprawdzenieWyniku.at(0).at(2)==sprawdzenieWyniku.at(1).at(1) && sprawdzenieWyniku.at(0).at(2)==sprawdzenieWyniku.at(2).at(0))
-                                {
-                                    if (sprawdzenieWyniku.at(2).at(0) =='x')
-                                    {
-                                        std::cout << "Zwyciezyl gracz grajacy krzyzykami!" << std::endl;
-                                    }
-                                    else
-                                    {
-                                        if(sprawdzenieWyniku.at(0).at(0) =='o')
-                                        {
-                                            std::cout << "Zwyciezyl gracz grajacy kolkami!" << std::endl;
-                                        }
-                                        else
-                                        {
-                                            ruch(sprawdzenieWyniku, kolejnosc);
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    ruch(sprawdzenieWyniku, kolejnosc);
-                                }
-                                
-                            }
-                        }
-                        
+                        return false;
                     }
                     
                 }
+                
             }
-            
+        
         }
         
     }
@@ -217,15 +78,25 @@ void ruch(Plansza ruchGracza, char kolejnosc)
         if(ruchGracza.at(wiersz-1).at(kolumna-1)=='p')
         {
             ruchGracza.at(wiersz-1).at(kolumna-1)=wybor;
-            if(wybor=='x')
+            if(sprawdzenieWyniku(ruchGracza) == true)
             {
-                wybor = 'o';
-                wypisaniePlanszy(ruchGracza, wybor);
+                    wypisaniePlanszy(ruchGracza);
+                    std::cout << "Gra zakonczona, wygral gracz grajacy " << kolejnosc << "!";
             }
             else
             {
-                wybor = 'x';
-                wypisaniePlanszy(ruchGracza, wybor);
+                if(wybor=='x')
+                {
+                    wybor='o';
+                    wypisaniePlanszy(ruchGracza);
+                    ruch(ruchGracza, wybor);
+                }
+                else
+                {
+                    wybor='x';
+                    wypisaniePlanszy(ruchGracza);
+                    ruch(ruchGracza, wybor);
+                }
             }
         }
         else
@@ -250,7 +121,8 @@ int main()
     std::cin >> wybor;
     if(wybor == 'o' || wybor == 'x')
     {
-    wypisaniePlanszy(plansza, wybor);
+    wypisaniePlanszy(plansza);
+    ruch(plansza, wybor);
     }
     else
     {
