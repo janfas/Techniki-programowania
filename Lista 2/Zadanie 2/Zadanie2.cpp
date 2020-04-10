@@ -40,14 +40,11 @@ int main()
     if(n<1)
     {
         std::cout << "Podano zla liczbe!" << std::endl;
-       
         return 0;
     }
     else
     {
         tabliczkaMnozenia(n);
-
         return 0;
     }
-    
 }

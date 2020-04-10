@@ -1,5 +1,41 @@
 #include <iostream>
 #include <vector>
+
+void wypisanie(std::vector< std::vector<int> > wypisanie, int n)
+{
+    std::cout << "Tabela dzielnikow liczb od 1 do " << n << " prezentuje sie nastepujaco:" << std::endl;
+        for(int i=0; i<n; i++)
+        {
+            std::cout << "Dzielniki " << i+1 << ":";
+            for(auto j : wypisanie.at(i))
+            {
+                std::cout.width(5);
+                std::cout << j;
+            }
+            std::cout << std::endl;
+        }
+}
+void liczenieDzielnikow(int n)
+{
+    std::vector< std::vector<int> > dzielniki;
+        dzielniki.resize(n);
+        for (int i=0; i<n; i++)
+        {
+            int pozycja=0;
+            dzielniki.at(i).resize(1);
+            dzielniki.at(i).at(0)= i+1;
+            for (int j=1; j<=i; j++)
+            {
+                if((i+1)%(j)==0)
+                {
+                    pozycja++;
+                    dzielniki.at(i).resize(pozycja+1);
+                    dzielniki.at(i).at(pozycja)= j;
+                }
+            }
+        }
+    wypisanie(dzielniki, n);
+}
 int main()
 {
     std::cout << "Tablicowanie dzielnikow liczb od 1 do n:" << std::endl;
@@ -22,40 +58,7 @@ int main()
     }
     else
     {
-        std::vector<int> liczbaDzielnikow;
-        liczbaDzielnikow.resize(n);
-        std::vector< std::vector<int> > dzielniki;
-        dzielniki.resize(n);
-        for (int i=0; i<n; i++)
-        {
-            liczbaDzielnikow[i]=0;
-            int pozycja=0;
-            dzielniki.at(i).resize(1);
-            dzielniki.at(i).at(0)= i+1;
-            for (int j=1; j<=i; j++)
-            {
-                if((i+1)%(j)==0)
-                {
-                    pozycja++;
-                    dzielniki.at(i).resize(pozycja+1);
-                    dzielniki.at(i).at(pozycja)= j;
-                    liczbaDzielnikow[i]+=1;
-                }
-            }
-        }
-        std::cout << "Tabela dzielnikow liczb od 1 do " << n << " prezentuje sie nastepujaco:" << std::endl;
-        std::cout << "(Liczba dzieli sie rowniez sama przez siebie)" << std::endl;
-        for(int i=0; i<n; i++)
-        {
-            for(int j=0; j<=liczbaDzielnikow[i]; j++)
-            {
-                std::cout.width(2);
-                std::cout << dzielniki[i][j];
-            }
-            std::cout << std::endl;
-        }
+        liczenieDzielnikow(n);
         return 0;
     }
-    
-
 }
