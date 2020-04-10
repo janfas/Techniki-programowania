@@ -1,16 +1,16 @@
 #include<iostream>
 #include<array>
-
-void ruch(std::array <std::array<char, 3>, 3> ruch);
-void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku);
-void wypisaniePlanszy(std::array <std::array<char,3>, 3> wypisaniePlanszy)
+using Plansza=std::array <std::array<char, 3>, 3> ;
+void ruch(Plansza ruchGracza, char kolejnosc);
+void sprawdzenieWyniku(Plansza sprawdzenieWyniku, char kolejnosc);
+void wypisaniePlanszy(Plansza wypisaniePlanszy, char kolejnosc)
 {
     for(int i=0; i<3; i++)
     {
-        for(int j=0; j<3; j++)
+        for(auto j : wypisaniePlanszy.at(i))
         {
             std::cout.width(3);
-            std::cout << wypisaniePlanszy[i][j];
+            std::cout << j;
         }
         std::cout << std::endl;
     }
@@ -20,10 +20,10 @@ void wypisaniePlanszy(std::array <std::array<char,3>, 3> wypisaniePlanszy)
     std::cout << "x - Krzyzyk" << std::endl;
     std::cout << "Numery kolumn od lewej do prawej - 1, 2, 3" << std::endl;
     std::cout << "Numery wierszy z gory na dol - 1, 2, 3" << std::endl;
-    sprawdzenieWyniku(wypisaniePlanszy);
+    sprawdzenieWyniku(wypisaniePlanszy, kolejnosc);
 }
 
-void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
+void sprawdzenieWyniku(Plansza sprawdzenieWyniku, char kolejnosc)
 {
     if(sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(0).at(1) && sprawdzenieWyniku.at(0).at(0)==sprawdzenieWyniku.at(0).at(2))
     {
@@ -39,7 +39,7 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
             }
             else
             {
-                ruch(sprawdzenieWyniku);
+                ruch(sprawdzenieWyniku, kolejnosc);
             }
         }
     }
@@ -59,7 +59,7 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
                 }
                 else
                 {
-                    ruch(sprawdzenieWyniku);
+                    ruch(sprawdzenieWyniku, kolejnosc);
                 }
             }
         }
@@ -79,7 +79,7 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
                     }
                     else
                     {
-                        ruch(sprawdzenieWyniku);
+                        ruch(sprawdzenieWyniku, kolejnosc);
                     }
                 }
             }
@@ -99,7 +99,7 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
                         }
                         else
                         {
-                            ruch(sprawdzenieWyniku);
+                            ruch(sprawdzenieWyniku, kolejnosc);
                         }
                     }
                 }
@@ -119,7 +119,7 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
                             }
                             else
                             {
-                                ruch(sprawdzenieWyniku);
+                                ruch(sprawdzenieWyniku, kolejnosc);
                             }
                         }
                     }
@@ -139,7 +139,7 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
                                 }
                                 else
                                 {
-                                    ruch(sprawdzenieWyniku);
+                                    ruch(sprawdzenieWyniku, kolejnosc);
                                 }
                             }
                         }
@@ -159,7 +159,7 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
                                     }
                                     else
                                     {
-                                        ruch(sprawdzenieWyniku);
+                                        ruch(sprawdzenieWyniku, kolejnosc);
                                     }
                                 }
                             }
@@ -179,13 +179,13 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
                                         }
                                         else
                                         {
-                                            ruch(sprawdzenieWyniku);
+                                            ruch(sprawdzenieWyniku, kolejnosc);
                                         }
                                     }
                                 }
                                 else
                                 {
-                                    ruch(sprawdzenieWyniku);
+                                    ruch(sprawdzenieWyniku, kolejnosc);
                                 }
                                 
                             }
@@ -201,42 +201,61 @@ void sprawdzenieWyniku(std::array <std::array<char, 3>, 3> sprawdzenieWyniku)
     }
 }
 
-void ruch(std::array <std::array<char, 3>, 3> ruch) 
+void ruch(Plansza ruchGracza, char kolejnosc) 
 {
     int kolumna, wiersz;
-    char wybor;
-    std::cout << "Czyj ruch?" << std::endl;
-    std::cout << "o - Kolko" << std::endl;
-    std::cout << "x - Krzyzyk" << std::endl;
-    std::cin >> wybor;
-    if(wybor == 'o' || wybor == 'x')
-    {
-    std::cout << std::endl;
-    std::cout << "W ktorym wierszu chcesz umiescic " << wybor << "?";
-    std::cout << std::endl;
-    std::cin >> wiersz;
-    std::cout << std::endl;
-    std::cout << "W ktorej kolumnie chcesz umiescic " << wybor << "?";
-    std::cout << std::endl;
-    std::cin >> kolumna;
-    std::cout << std::endl;
-    ruch.at(wiersz-1).at(kolumna-1)=wybor;
-    wypisaniePlanszy(ruch);
-    }
-    else
-    {
-        std::cout << "Blad, niepoprawny znak!" << std::endl;
-    }
-    
+    char wybor=kolejnosc;
+        std::cout << std::endl;
+        std::cout << "W ktorym wierszu chcesz umiescic " << wybor << "?";
+        std::cout << std::endl;
+        std::cin >> wiersz;
+        std::cout << std::endl;
+        std::cout << "W ktorej kolumnie chcesz umiescic " << wybor << "?";
+        std::cout << std::endl;
+        std::cin >> kolumna;
+        std::cout << std::endl;
+        if(ruchGracza.at(wiersz-1).at(kolumna-1)=='p')
+        {
+            ruchGracza.at(wiersz-1).at(kolumna-1)=wybor;
+            if(wybor=='x')
+            {
+                wybor = 'o';
+                wypisaniePlanszy(ruchGracza, wybor);
+            }
+            else
+            {
+                wybor = 'x';
+                wypisaniePlanszy(ruchGracza, wybor);
+            }
+        }
+        else
+        {
+            std::cout << "To pole jest juz zajete! Wybierz inne pole." << std::endl;
+            ruch(ruchGracza, wybor);
+        }
 }
 
 int main()
 {
-    std::array <std::array<char,3>, 3> plansza =   {{
+    char wybor;
+    Plansza plansza =   {{
                                                         {'p','p','p'},
                                                         {'p','p','p'},
                                                         {'p','p','p'},
                                                         }};
     std::cout << "Rozgrywka w kolko i krzyzyk:" << std::endl;
-    wypisaniePlanszy(plansza);
+    std::cout << "Kto zaczyna?" << std::endl;
+    std::cout << "o - Kolko" << std::endl;
+    std::cout << "x - Krzyzyk" << std::endl;
+    std::cin >> wybor;
+    if(wybor == 'o' || wybor == 'x')
+    {
+    wypisaniePlanszy(plansza, wybor);
+    }
+    else
+    {
+        std::cout << "Blad, niepoprawny znak!" << std::endl;
+        return 0;
+    }
+    
 }
