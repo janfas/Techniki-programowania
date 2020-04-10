@@ -6,10 +6,10 @@ void wypisanie(std::vector< std::vector<int> > wypisanie, int n)
     std::cout << "Tabliczka mnozenia liczb od 1 do " << n << " prezentuje sie nastepujaco:" << std::endl;
         for(int i=0; i<n; i++)
         {
-            for(int j=0; j<n; j++)
+            for(auto j : wypisanie.at(i))
             {
                 std::cout.width(10);
-                std::cout << wypisanie[i][j];
+                std::cout << j;
             }
             std::cout << std::endl;
         }
