@@ -22,10 +22,10 @@ void wprowadzanie(std::string zrodloPliku)
 
 void usuwanie(std::string zrodloPliku)
 {
-  std::string wiersz;
-  std::cout << "Z ktorego wiersza, chcesz usunac wpis?" << std::endl;
-  std::cin >> wiersz;
-  std::map<std::string, std::string>::iterator i = wpis.find(wiersz);
+  std::string klucz;
+  std::cout << "Podaj imie, ktore chcesz usunac?" << std::endl;
+  std::cin >> klucz;
+  std::map<std::string, std::string>::iterator i = wpis.find(klucz);
   wpis.erase(i);
   interfejs(zrodloPliku);
 }
@@ -47,7 +47,6 @@ void zmienianie(std::string zrodloPliku)
 
 void wyswietlanie(std::string zrodloPliku)
 {
-  std::ifstream plik(zrodloPliku);
   std::string tekst;
   std::map<std::string, std::string>::iterator i;
   for(i = wpis.begin(); i != wpis.end(); ++i)
@@ -103,7 +102,7 @@ void interfejs(std::string zrodloPliku)
 int main()
 {
   std::string zrodloPliku("ksiazkaadresowa.txt");
-  std::ofstream plik(zrodloPliku, std::ios::out);
+  std::ofstream plik(zrodloPliku, std::ios::app);
   if(plik)
   {
     std::cout << "Ksiazka adresowa" << std::endl;
